@@ -26,6 +26,7 @@ const EditExistingTaskScreen = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
+  // 'Edit Existing Task' Fields
   const [form, setForm] = useState({
     title: '',
     category: '',
@@ -37,6 +38,7 @@ const EditExistingTaskScreen = () => {
     completed: false,
   });
 
+  // Types of Task Alerts
   const [open, setOpen] = useState(false);
   const [alertTyp, setAlertTyp] = useState('');
   const [items, setItems] = useState([
@@ -45,6 +47,7 @@ const EditExistingTaskScreen = () => {
     { label: 'Gradual', value: 'gradual' },
   ]);
 
+  // Repeat [number of times] every [period of time]  
   const numChoices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const periods = ['-', 'Days', 'Weeks', 'Months', 'Years'];
 
@@ -88,6 +91,7 @@ const EditExistingTaskScreen = () => {
     loadTask();
   }, [stringTaskId]);
 
+  // Submitting Task
   const handleSubmit = async () => {
     const updates = {
       title: form.title,
@@ -104,11 +108,13 @@ const EditExistingTaskScreen = () => {
     router.back();
   };
 
+  // Delete Task
   const handleDelete = async () => {
     await deleteTask(stringTaskId);
     router.back();
   };
 
+  // Handling Task Changes
   const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || form.date;
     setForm({ ...form, date: currentDate });
@@ -119,10 +125,12 @@ const EditExistingTaskScreen = () => {
     setForm({ ...form, time: currentTime });
   };
 
+  // Set Task Completion
   const toggleCompletion = () => {
     setForm((prevForm) => ({ ...prevForm, completed: !prevForm.completed }));
   };
 
+  // Loading Page
   if (isLoading) {
     return (
       <View style={[styles.container, styles.centered]}>
@@ -131,6 +139,7 @@ const EditExistingTaskScreen = () => {
     );
   }
 
+  // Code Elements on the Screen
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -235,6 +244,7 @@ const EditExistingTaskScreen = () => {
   );
 };
 
+// Element Formatting
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#caddd7' },
   safeArea: { flex: 1 },
