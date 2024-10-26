@@ -11,6 +11,8 @@ import { Task } from '../src/types/Tasks';
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  // 'Home' Screen Elements
   const {
     tasks,
     selectedDate,
@@ -20,10 +22,12 @@ export default function HomeScreen() {
     markedDates
   } = useTaskContext();
 
+  // Filter Tasks by Day
   const handleDayPress = (day: { dateString: string }) => {
     setSelectedDate(day.dateString);
   };
 
+  // Code Elements on the Screen
   const TaskItem = ({ task }: { task: Task }) => (
     <TouchableOpacity 
       style={styles.taskItem}
@@ -131,6 +135,7 @@ export default function HomeScreen() {
   );
 }
 
+// Element Formatting
 const styles = StyleSheet.create({
   container: {
     flex: 1,
