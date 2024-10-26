@@ -21,6 +21,7 @@ import { categories, getCategoryColor } from '../src/config/categories';
 const CreateNewTaskScreen = () => {
   const router = useRouter();
 
+    // 'Create New Task' Fields
     const [form, setForm] = useState({
       title: '',
       category: '',
@@ -33,7 +34,8 @@ const CreateNewTaskScreen = () => {
   
     const [categoryOpen, setCategoryOpen] = useState(false);
     const [categoryItems] = useState(categories);
-
+  
+  // Types of Task Alerts
   const [open, setOpen] = useState(false);
   const [alertTyp, setAlertTyp] = useState('');
   const [items, setItems] = useState([
@@ -42,11 +44,13 @@ const CreateNewTaskScreen = () => {
     { label: 'Gradual', value: 'gradual' }
   ]);
 
+  // Repeat [number of times] every [period of time]  
   const numChoices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const periods = ['-', 'Days', 'Weeks', 'Months', 'Years'];
 
   const { addTask } = useTaskContext();
-
+  
+  // Submitting Task
   const handleSubmit = async () => {
     const newTask = {
       title: form.title,
@@ -63,6 +67,7 @@ const CreateNewTaskScreen = () => {
     router.back();
   };
 
+  // Handling Task Changes
   const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || form.date;
     setForm({ ...form, date: currentDate });
@@ -73,6 +78,7 @@ const CreateNewTaskScreen = () => {
     setForm({ ...form, time: currentTime });
   };
 
+  // Code Elements on the Screen
   return (
     <KeyboardAvoidingView 
       style={styles.container}
@@ -165,6 +171,7 @@ const CreateNewTaskScreen = () => {
   );
 }
 
+// Element Formatting
 const styles = StyleSheet.create({
   container: {
     flex: 1,
